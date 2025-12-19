@@ -12,34 +12,8 @@ from pathlib import Path
 import argparse
 import os
 from huggingface_hub import hf_hub_download
-
-"""
-DeepLabV3 Clothing Segmentation Inference Script
-
-Model Architecture:
-- Backbone: ResNet-101 (ImageNet pretrained)
-- Decoder: Atrous Spatial Pyramid Pooling (ASPP)
-- Output: 18-class segmentation mask (512×512)
-- Classifier: Modified final layer to output 18 classes
-
-Training Configuration (from notebook):
-- Dataset: mattmdjaga/human_parsing_dataset (70/15/15 train/val/test split)
-- Loss: 0.6 × CrossEntropyLoss + 0.4 × DiceLoss
-- Optimizer: AdamW (lr=1e-4, weight_decay=1e-4)
-- Augmentation: Resize(512x512), HorizontalFlip, Normalization
-- Batch Size: 8
-- Epochs: 20
-- Metrics: Pixel Accuracy, mIoU
-
-Inference Features:
-- Single image or batch processing
-- GPU/CPU support
-- Color-coded visualization with 18 clothing classes
-- Save segmentation masks and overlays
-- HuggingFace Hub integration for model download
-"""
     
-    # Class labels for clothing parsing
+# Class labels for clothing parsing
 CLASS_LABELS = {
     0: 'background',
     1: 'hat',
